@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Homework_0719</title>
+
+<style type="text/css">
+
+body {
+	font-family:  "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 1.5em;
+	margin: 40px;
+}
+
+/*線的規格*/
+h1 {
+	text-align: center;  /*線的位置 靠左 靠右 置中*/
+	border-bottom: 4px solid lightgrey;  /*線的粗度*/
+	margin-bottom: 50px;  /*線與文字的間格*/
+}
+
+
+fieldset {
+	margin: 3em 0 0 0;  /*網頁縮小後不變形*/
+	padding: 0;
+	border: 2px solid lightgrey;  /*框框的粗度、顏色*/
+}
+
+legend {
+	margin-left: 2em;  /*文字靠左多少*/
+	color:rgb(138, 146, 255);
+	font-weight: bold;  /*字型款式*/
+}
+
+label {
+	float: left;
+	width: 8em;
+	margin-right: 1em;
+}
+
+fieldset ol {
+	list-style: none;
+	padding-top:10px;
+	padding-left: 3em;
+	padding-bottom: 20px;
+}
+
+fieldset li {
+	line-height: 30px;
+	margin-top: 8px;
+	margin-bottom: 10px;
+}
+
+/*label規格*/
+fieldset li input.formFields {
+	line-height: 120px;
+	height: 32px;
+	border: 1px solid lightgray;
+}
+
+fieldset .submit {
+	border-style: none;
+	width: 30em;
+	height: 4em;
+	margin: -1em auto 1em 18em;
+}
+</style>
+
+<script src="jquery-1.9.1.min.js"></script>
+
+</head>
+<body>
+	
+	<H1>加入會員</H1>
+	<p>輸入完資料後按送出即可。</p>
+
+	<form method="post" action="http://exec.hostzi.com/echo.php" id="frm">
+
+		<fieldset>
+			<legend>Contact Details</legend>
+			<ol>
+				<li><label for="txtName">帳號:</label> <input id="txtName"
+					name="txtName" type="text" class="formFields" /></li>
+				<li><label for="txtPhone">密碼:</label> <input
+					id="txtPhone" name="txtPhone" type="text" class="formFields" /></li>
+			</ol>
+
+			<input id="btnSubmit" name="btnSubmit" type="submit" class="submit"
+				value="Send" />
+
+		</fieldset>
+
+	</form>
+
+<span id="test"></span>
+
+<script>
+	function doChange() {
+		// document.getElementById("test").innerHTML += this.name + ":" + this.value + "<br>";
+		localStorage.setItem(this.name, this.value);
+	}
+	
+	$("#txtName").keyup(doChange);
+	$("#txtEmail").keyup(doChange);
+	$("#txtPhone").keyup(doChange);
+
+	function readAndShow() {
+		if (localStorage["txtName"])
+			$("#txtName").val(localStorage["txtName"]);
+		if (localStorage["txtEmail"])
+			$("#txtEmail").val(localStorage["txtEmail"]);
+		if (localStorage["txtPhone"])
+			$("#txtPhone").val(localStorage["txtPhone"]);
+	}
+	
+	$(document).ready(readAndShow);
+
+	$("#frm").submit(function () {
+		localStorage.clear();
+	});
+	
+</script>
+
+</body>
+</html>
